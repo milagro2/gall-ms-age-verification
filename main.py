@@ -11,9 +11,5 @@ def read_root():
 def read_hello():
     return {"message": "Hello!"}
 
-if __name__ == "__main__":
-    import uvicorn
-
-    port = int(os.getenv("PORT", default=5000))
-
-    uvicorn.run(app, host="0.0.0.0", port=port)
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=8000))
