@@ -16,5 +16,8 @@ COPY . .
 # Expose the port on which the application will run
 EXPOSE 8000
 
+ARG PORT=8000
+ENV PORT=${PORT}
+
 # Run the FastAPI application using uvicorn server
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "${PORT}"]
