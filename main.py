@@ -1,4 +1,3 @@
-import os
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -11,5 +10,12 @@ def read_root():
 def read_hello():
     return {"message": "Hello!"}
 
-if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=8000))
+# Ensure the application listens on 0.0.0.0:$PORT
+if __name__ == "__main__":
+    import os
+    import uvicorn
+
+    host = "0.0.0.0"
+    port = int(os.getenv("PORT", default=8000))
+
+    uvicorn.run(app, host=host, port=port)
