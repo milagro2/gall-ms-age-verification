@@ -11,5 +11,12 @@ def read_root():
 def read_hello():
     return {"message": "Hello!"}
 
-if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
+# This block will only run if the script is executed directly, not imported
+if __name__ == "__main__":
+    import uvicorn
+
+    # Get the port from the environment variable provided by Railway
+    port = int(os.getenv("PORT", default=8000))
+
+    # Run the Uvicorn server with the specified host and port
+    uvicorn.run(app, host="0.0.0.0", port=port)
