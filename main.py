@@ -1,5 +1,5 @@
 import os
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI
 
 app = FastAPI()
 
@@ -18,18 +18,7 @@ def read_hello():
 def read_hello():
     return {"message": "Bye Bye!"}
 
-@app.post("/upload")
-def upload(file: UploadFile = File(...)):
-    try:
-        contents = file.file.read()
-        with open(file.filename, 'wb') as f:
-            f.write(contents)
-    except Exception:
-        return {"message": "There was an error uploading the file"}
-    finally:
-        file.file.close()
 
-    return {"message": f"Successfully uploaded {file.filename}"}
 
 
 if __name__ == '__main__':
