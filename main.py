@@ -1,8 +1,8 @@
 import os
 from fastapi import FastAPI
+import uvicorn
 
 app = FastAPI()
-
 
 @app.get("/")
 def read_root():
@@ -18,8 +18,5 @@ def read_hello():
 def read_hello():
     return {"message": "Bye Bye!"}
 
-
-
-
 if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=8000))
+    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", default=8000)))
