@@ -11,5 +11,9 @@ def read_root():
 def read_hello():
     return {"message": "Hello!"}
 
+@app.get("/bye")
+def read_hello():
+    return {"message": "Bye Bye!"}
+
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=8000))
